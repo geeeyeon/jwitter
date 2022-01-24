@@ -4,6 +4,7 @@
 // import "firebase/compat/storage";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBSNuox8qBqMz9UmriFEp11SRfSi9mpIEc",
@@ -16,3 +17,4 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 export const authService = getAuth(firebaseApp);
+export const dbService = getFirestore();
