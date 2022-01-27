@@ -1,17 +1,20 @@
 import React from "react";
-import { dbService } from "fBase";
+import { dbService, storageService } from "fBase";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { useState } from "react/cjs/react.development";
+import { deleteObject, ref } from "firebase/storage";
 
 const Jweet = ({ jweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
   const [newJweet, setNewJweet] = useState(jweetObj.text);
 
-  const onDeleteClick = async (id) => {
+  const onDeleteClick = async () => {
     const ok = window.confirm("Are you sure you want to delete this jweet?");
     const TextRef = doc(dbService, "jweets", `${jweetObj.id}`);
     if (ok) {
       await deleteDoc(TextRef);
+      const urlRef = ref(storageService, jweetObj.attachmentUrl);
+      await deleteObject(urlRef);
     }
   };
 
@@ -54,6 +57,9 @@ const Jweet = ({ jweetObj, isOwner }) => {
       ) : (
         <>
           <h4>{jweetObj.text}</h4>
+          {jweetObj.attachmentUrl && (
+            <img src={jweetObj.attachmentUrl} width="50px" height="50px" />
+          )}
           {isOwner && (
             <>
               <button onClick={onDeleteClick}>Delete</button>
