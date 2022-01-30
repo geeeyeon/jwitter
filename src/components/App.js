@@ -6,7 +6,7 @@ function App() {
   const [init, setInit] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userObj, setUserObj] = useState(null);
-  const [newName,setNewName] = useState('')
+  const [newName, setNewName] = useState("");
 
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
@@ -15,6 +15,7 @@ function App() {
         setUserObj(user);
       } else {
         setIsLoggedIn(false);
+        setUserObj(null);
       }
       setInit(true);
     });
@@ -22,7 +23,7 @@ function App() {
 
   const refreshUser = () => {
     const user = authService.currentUser;
-    setNewName(user.displayName)
+    setNewName(user.displayName);
   };
 
   return (
