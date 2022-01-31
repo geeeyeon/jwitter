@@ -24,6 +24,9 @@ const Home = ({ userObj }) => {
 
   return (
     <div>
+      <h1 className="text-3xl font-bold underline text-indi bg-lightblack">
+        Hello world!
+      </h1>
       <JweetFactoty userObj={userObj} />
       <div>
         {jweets.map((jweet) => (

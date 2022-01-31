@@ -36,29 +36,38 @@ const AuthForm = () => {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          required
-          value={email}
-          onChange={onChange}
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          required
-          value={password}
-          onChange={onChange}
-        />
-        <input type="submit" value={newAccount ? "Create Account" : "Log In"} />
-        {error}
+        <div className="text-center h-8 max-w-md mx-auto border-b">
+          <input
+            className="w-full h-full border-transparent text-center"
+            name="email"
+            type="text"
+            placeholder="Email"
+            required
+            value={email}
+            onChange={onChange}
+          />
+        </div>
+        <div className="text-center h-8 max-w-md mx-auto border-b mt-2">
+          <input
+            className="w-full h-full border-transparent text-center"
+            name="password"
+            type="password"
+            placeholder="Password"
+            required
+            value={password}
+            onChange={onChange}
+          />
+        </div>
+        <div className="text-center mt-4 max-w-md mx-auto border-gray-400 border rounded-3xl py-1">
+          <input type="submit" value={newAccount ? "가입하기" : "로그인"} />
+        </div>
+        <div className="text-sm text-red-700 text-center">{error}</div>
       </form>
-
-      <span onClick={toggleAccount}>
-        {newAccount ? "Sign in" : "Create Account"}
-      </span>
+      <div className="text-center my-4 max-w-md mx-auto border-gray-400 border rounded-3xl py-1">
+        <span className="" onClick={toggleAccount}>
+          {newAccount ? "로그인" : "이메일로 가입하기"}
+        </span>
+      </div>
     </>
   );
 };
