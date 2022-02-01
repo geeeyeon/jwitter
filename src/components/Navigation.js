@@ -3,14 +3,28 @@ import { Link } from "react-router-dom";
 
 const Navigation = ({ userObj }) => {
   return (
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/profile">{userObj.displayName}님의 Profile</Link>
-      </li>
-    </ul>
+    <>
+      <div className="px-2 py-2 w-full">
+        <div className="flex-row columns-2">
+          <div>
+            <Link to="/">
+              <img
+                src={require("assets/twitter.png")}
+                width={50}
+                height={50}
+                alt="/"
+              />
+            </Link>
+          </div>
+          <Link
+            className="flex justify-end text-blue-400 font-semibold"
+            to="/profile"
+          >
+            {userObj.displayName}님의 프로필
+          </Link>
+        </div>
+      </div>
+    </>
   );
 };
 export default Navigation;

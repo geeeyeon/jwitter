@@ -53,23 +53,55 @@ const JweetFactoty = ({ userObj }) => {
   const onClearAttachmentCLick = () => {
     setAttachment("");
   };
+
   return (
     <form onSubmit={onSubmit}>
-      <input
+      <textarea
         value={jweet}
         onChange={onChange}
         type="text"
         placeholder="What's on your mind?"
         maxLength={120}
+        multiple={true}
+        className="bg-gray-200 px-2 py-2 rounded-md w-full resize-y"
       />
-      <input type="file" accept="image/*" onChange={onFileChange} />
-      <input type="submit" value="Jweet" />
-      {attachment && (
+      <div className="w-full flex-row columns-2">
         <div>
-          <img src={attachment} width="50px" height="50px" />
-          <button onClick={onClearAttachmentCLick}>Clear</button>
+          <input
+            className="block w-full text-sm text-slate-500
+          file:mr-4 file:py-1 file:px-4
+          file:rounded-full file:border-0
+          file:text-sm file:font-semibold
+          file:bg-gray-200 file:text-gray-700
+        "
+            type="file"
+            accept="image/*"
+            onChange={onFileChange}
+          />
         </div>
+        <div className="text-right">
+          <button
+            className="text-sm text-white bg-gray-600 px-2 rounded-sm"
+            onClick={onClearAttachmentCLick}
+          >
+            Clear
+          </button>
+        </div>
+      </div>
+      {attachment && (
+        <>
+          <div className="w-full mt-2 text-center">
+            <img class="inline" src={attachment} width="50px" height="50px" />
+          </div>
+        </>
       )}
+      <div className="w-full py-1 my-2 rounded-2xl bg-blue-400  text-center">
+        <input
+          className="text-white font-semibold"
+          type="submit"
+          value="Jweet"
+        />
+      </div>
     </form>
   );
 };

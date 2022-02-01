@@ -23,21 +23,20 @@ const Home = ({ userObj }) => {
   }, []);
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline text-indi bg-lightblack">
-        Hello world!
-      </h1>
-      <JweetFactoty userObj={userObj} />
-      <div>
-        {jweets.map((jweet) => (
-          <Jweet
-            key={jweet.id}
-            jweetObj={jweet}
-            isOwner={jweet.creatorId === userObj.uid}
-          />
-        ))}
+    <>
+      <div className="px-4 py-4">
+        <JweetFactoty userObj={userObj} />
+        <div className="pt-4 border-gray-300 border-b">
+          {jweets.map((jweet) => (
+            <Jweet
+              key={jweet.id}
+              jweetObj={jweet}
+              isOwner={jweet.creatorId === userObj.uid}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 export default Home;

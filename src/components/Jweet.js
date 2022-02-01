@@ -39,7 +39,7 @@ const Jweet = ({ jweetObj, isOwner }) => {
   };
 
   return (
-    <div>
+    <div className="border-gray-300 border-t border-x py-2 px-2">
       {editing ? (
         <>
           <form onSubmit={onSubmit}>
@@ -50,7 +50,11 @@ const Jweet = ({ jweetObj, isOwner }) => {
               required
               onChange={onChange}
             />
-            <input type="submit" value="Update Jweet" />
+            <input
+              className="border border-gray-400 rounded-2xl text-sm"
+              type="submit"
+              value="Update Jweet"
+            />
           </form>
           <button onClick={toggleEditing}>Cancle</button>
         </>
@@ -58,12 +62,26 @@ const Jweet = ({ jweetObj, isOwner }) => {
         <>
           <h4>{jweetObj.text}</h4>
           {jweetObj.attachmentUrl && (
-            <img src={jweetObj.attachmentUrl} width="50px" height="50px" />
+            <div className="border border-gray-400 rounded-md px-2 py-2 my-2">
+              <img src={jweetObj.attachmentUrl} className="flex" />
+            </div>
           )}
           {isOwner && (
             <>
-              <button onClick={onDeleteClick}>Delete</button>
-              <button onClick={toggleEditing}>Edit</button>
+              <div className="flex-row w-full justify-between text-right">
+                <button
+                  className="mr-1 border-gray-500 border rounded-2xl px-2 py-1 text-xs"
+                  onClick={toggleEditing}
+                >
+                  수정
+                </button>
+                <button
+                  className="bg-gray-600 rounded-2xl px-2 py-1 text-white text-xs"
+                  onClick={onDeleteClick}
+                >
+                  삭제
+                </button>
+              </div>
             </>
           )}
         </>

@@ -46,18 +46,30 @@ const Profile = ({ refreshUser, userObj }) => {
     refreshUser();
   };
   return (
-    <>
+    <div className="px-4">
+      <div className="my-2 font-bold text-lg">프로필 업데이트</div>
       <form onSubmit={onSubmit}>
         <input
+          className="bg-gray-200 rounded-sm px-2 py-1 mr-1"
           onChange={onChange}
           type="text"
           placeholder="Display name"
           value={newDisplayName}
         />
-        <input type="submit" value="Update Profile" />
+        <input
+          className="bg-blue-400 px-2 py-1 rounded-2xl text-white"
+          type="submit"
+          value="Update"
+        />
       </form>
-      <button onClick={onLogOutClick}>Log Out</button>
-    </>
+      <div className="mt-5 mb-1 font-bold text-lg">로그아웃</div>
+      <button
+        className="bg-gray-600 px-2 py-1 text-white rounded-md"
+        onClick={onLogOutClick}
+      >
+        Log Out
+      </button>
+    </div>
   );
 };
 export default Profile;
