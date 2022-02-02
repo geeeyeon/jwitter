@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navigation = ({ userObj }) => {
+  const [userName, setUserName] = useState(userObj?.displayName);
   return (
     <>
       <div className="px-2 py-2 w-full">
@@ -20,7 +21,7 @@ const Navigation = ({ userObj }) => {
             className="flex justify-end text-blue-400 font-semibold"
             to="/profile"
           >
-            {userObj.displayName}님의 프로필
+            {userName ? `${userName}님의 프로필` : `사용자님의 프로필`}
           </Link>
         </div>
       </div>

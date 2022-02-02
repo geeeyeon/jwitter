@@ -36,7 +36,7 @@ const AuthForm = () => {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <div className="text-center h-8 max-w-md mx-auto border-b">
+        <div className="text-center h-8 max-w-md mx-auto border-black border-b">
           <input
             className="w-full h-full border-transparent text-center"
             name="email"
@@ -47,7 +47,7 @@ const AuthForm = () => {
             onChange={onChange}
           />
         </div>
-        <div className="text-center h-8 max-w-md mx-auto border-b mt-2">
+        <div className="text-center h-8 max-w-md mx-auto border-black border-b mt-2">
           <input
             className="w-full h-full border-transparent text-center"
             name="password"
@@ -58,8 +58,12 @@ const AuthForm = () => {
             onChange={onChange}
           />
         </div>
-        <div className="text-center mt-4 max-w-md mx-auto border-gray-400 border rounded-3xl py-1">
-          <input type="submit" value={newAccount ? "가입하기" : "로그인"} />
+        <div className="text-center mt-4 max-w-md mx-auto bg-blue-400 rounded-3xl py-1">
+          <input
+            className="text-white"
+            type="submit"
+            value={newAccount ? "가입하기" : "로그인"}
+          />
         </div>
         <div className="text-sm text-red-700 text-center">{error}</div>
       </form>

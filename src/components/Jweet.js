@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { dbService, storageService } from "fBase";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
-import { useState } from "react/cjs/react.development";
 import { deleteObject, ref } from "firebase/storage";
 
 const Jweet = ({ jweetObj, isOwner }) => {
@@ -42,28 +41,67 @@ const Jweet = ({ jweetObj, isOwner }) => {
     <div className="border-gray-300 border-t border-x py-2 px-2">
       {editing ? (
         <>
+          <div className="flex mb-2">
+            <img
+              src={
+                jweetObj.userPhoto
+                  ? jweetObj.userPhoto
+                  : require("assets/userNoPhoto.png")
+              }
+              className="h-10 w-10 rounded-full float-left"
+              alt="/"
+            />
+            <div className="text-blue-400 font-semibold py-1 ml-2">
+              {jweetObj.userNickName}
+            </div>
+          </div>
           <form onSubmit={onSubmit}>
-            <input
+            <textarea
               type="text"
               placeholder="Edit your jweet"
               value={newJweet}
               required
               onChange={onChange}
+              maxLength={120}
+              multiple={true}
+              className="bg-gray-200 px-2 py-2 rounded-md w-full resize-y"
             />
-            <input
-              className="border border-gray-400 rounded-2xl text-sm"
-              type="submit"
-              value="Update Jweet"
-            />
+            <div className="flex-row w-full justify-between text-right">
+              <input
+                className="mr-1 border-gray-500 border rounded-2xl px-2 py-1 text-xs"
+                type="submit"
+                value="수정 완료"
+              />
+              <button
+                className="bg-gray-600 rounded-2xl px-2 py-1 text-white text-xs"
+                onClick={toggleEditing}
+              >
+                취소
+              </button>
+            </div>
           </form>
-          <button onClick={toggleEditing}>Cancle</button>
         </>
       ) : (
         <>
+          <div className="flex mb-2">
+            <img
+              src={
+                jweetObj.userPhoto
+                  ? jweetObj.userPhoto
+                  : require("assets/userNoPhoto.png")
+              }
+              className="h-10 w-10 rounded-full float-left"
+              alt="/"
+            />
+            <div className="text-blue-400 font-semibold py-1 ml-2">
+              {jweetObj.userNickName}
+            </div>
+          </div>
+
           <h4>{jweetObj.text}</h4>
           {jweetObj.attachmentUrl && (
             <div className="border border-gray-400 rounded-md px-2 py-2 my-2">
-              <img src={jweetObj.attachmentUrl} className="flex" />
+              <img src={jweetObj.attachmentUrl} className="flex" alt="/" />
             </div>
           )}
           {isOwner && (

@@ -32,6 +32,7 @@ const Home = ({ userObj }) => {
               key={jweet.id}
               jweetObj={jweet}
               isOwner={jweet.creatorId === userObj.uid}
+              photoURL={userObj.photoURL}
             />
           ))}
         </div>

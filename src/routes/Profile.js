@@ -1,15 +1,13 @@
 import { authService, dbService } from "fBase";
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { collection, getDocs, query, where } from "@firebase/firestore";
-import { useState } from "react/cjs/react.development";
 import { updateProfile } from "@firebase/auth";
 
 const Profile = ({ refreshUser, userObj }) => {
   const history = useHistory();
-  const [newDisplayName, setNewDisplayName] = useState(
-    userObj.displayName || "사용자"
-  );
+  const [newDisplayName, setNewDisplayName] = useState(userObj?.displayName);
+  const [userPhoto, setUserPhoto] = useState(userObj.userPhoto);
   const onLogOutClick = () => {
     authService.signOut();
     history.push("/");
@@ -24,7 +22,7 @@ const Profile = ({ refreshUser, userObj }) => {
     const querySnapshot = await getDocs(q);
     // console.log("getMyJweets!!", q, querySnapshot);
     querySnapshot.forEach((doc) => {
-      console.log(doc.id, "-->", doc.data());
+      // console.log(doc.id, "-->", doc.data());
     });
   };
   useEffect(() => {
@@ -48,13 +46,28 @@ const Profile = ({ refreshUser, userObj }) => {
   return (
     <div className="px-4">
       <div className="my-2 font-bold text-lg">프로필 업데이트</div>
+      <div className="flex mb-3 justify-center">
+        {userPhoto ? (
+          <img
+            src={userObj.userPhoto}
+            className="h-50 w-50 rounded-full object-none object-center"
+            alt="/"
+          />
+        ) : (
+          <img
+            src={require("assets/userNoPhoto.png")}
+            className="h-50 w-50 rounded-full object-none object-center"
+            alt="/"
+          />
+        )}
+      </div>
       <form onSubmit={onSubmit}>
         <input
           className="bg-gray-200 rounded-sm px-2 py-1 mr-1"
           onChange={onChange}
           type="text"
           placeholder="Display name"
-          value={newDisplayName}
+          value={newDisplayName ? newDisplayName : ""}
         />
         <input
           className="bg-blue-400 px-2 py-1 rounded-2xl text-white"

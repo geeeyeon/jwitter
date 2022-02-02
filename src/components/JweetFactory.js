@@ -20,6 +20,8 @@ const JweetFactoty = ({ userObj }) => {
         text: jweet,
         createdAt: Date.now(),
         creatorId: userObj.uid,
+        userNickName: userObj.displayName,
+        userPhoto: userObj.photoURL,
         attachmentUrl,
       };
       await addDoc(collection(dbService, "jweets"), jweetPosting);
@@ -91,7 +93,13 @@ const JweetFactoty = ({ userObj }) => {
       {attachment && (
         <>
           <div className="w-full mt-2 text-center">
-            <img class="inline" src={attachment} width="50px" height="50px" />
+            <img
+              class="inline"
+              src={attachment}
+              width="50px"
+              height="50px"
+              alt="/"
+            />
           </div>
         </>
       )}
