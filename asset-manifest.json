@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/jwitter/static/css/main.7ae30f62.css",
+    "main.js": "/jwitter/static/js/main.1ee994cb.js",
+    "static/media/twitter.png": "/jwitter/static/media/twitter.e98f4bb8b343d3c4568f.png",
+    "index.html": "/jwitter/index.html",
+    "main.7ae30f62.css.map": "/jwitter/static/css/main.7ae30f62.css.map",
+    "main.1ee994cb.js.map": "/jwitter/static/js/main.1ee994cb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7ae30f62.css",
+    "static/js/main.1ee994cb.js"
+  ]
+}
