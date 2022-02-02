@@ -7,7 +7,7 @@ import { updateProfile } from "@firebase/auth";
 const Profile = ({ refreshUser, userObj }) => {
   const history = useHistory();
   const [newDisplayName, setNewDisplayName] = useState(userObj?.displayName);
-  const [userPhoto, setUserPhoto] = useState(userObj.userPhoto);
+  const [userPhoto, setUserPhoto] = useState(userObj?.photoURL);
   const onLogOutClick = () => {
     authService.signOut();
     history.push("/");
@@ -43,23 +43,20 @@ const Profile = ({ refreshUser, userObj }) => {
     }
     refreshUser();
   };
+
   return (
     <div className="px-4">
       <div className="my-2 font-bold text-lg">프로필 업데이트</div>
-      <div className="flex mb-3 justify-center">
-        {userPhoto ? (
-          <img
-            src={userObj.userPhoto}
-            className="h-50 w-50 rounded-full object-none object-center"
-            alt="/"
-          />
-        ) : (
-          <img
-            src={require("assets/userNoPhoto.png")}
-            className="h-50 w-50 rounded-full object-none object-center"
-            alt="/"
-          />
-        )}
+      <div className="mb-3 justify-center">
+        <img
+          src={
+            userObj.photoURL
+              ? userObj.photoURL
+              : require("assets/userNoPhoto.png")
+          }
+          className="h-24 w-24 rounded-full object-center object-contain"
+          alt="/"
+        />
       </div>
       <form onSubmit={onSubmit}>
         <input
