@@ -33,7 +33,12 @@ const Auth = () => {
   return (
     <div className="py-4 px-4">
       <div className="flex justify-center">
-        <img src={require("assets/twitter.png")} width="100px" height="100px" />
+        <img
+          src={require("assets/twitter.png")}
+          width="100px"
+          height="100px"
+          alt="/"
+        />
       </div>
       <AuthForm />
       <div className="w-full">

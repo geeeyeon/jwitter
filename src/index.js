@@ -4,7 +4,7 @@ import App from "./components/App";
 import { authService } from "./fBase";
 import "./index.css";
 
-console.log(authService);
+// console.log(authService);
 
 ReactDOM.render(
   <React.StrictMode>
