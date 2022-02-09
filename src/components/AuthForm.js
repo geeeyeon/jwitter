@@ -5,29 +5,57 @@ import {
   signInWithEmailAndPassword,
 } from "@firebase/auth";
 
-const AuthForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
+const useInput = (initialValue, validator) => {
+  const [value, setValue] = useState(initialValue);
   const onChange = (event) => {
     const {
-      target: { name, value },
+      target: { value },
     } = event;
-    if (name === "email") setEmail(value);
-    else if (name === "password") setPassword(value);
+    let willUpdate = true;
+    if (typeof validator === "function") {
+      willUpdate = validator(value);
+    }
+    if (willUpdate) {
+      setValue(value);
+    }
   };
+  return { value, onChange };
+};
+
+const AuthForm = () => {
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  const maxLen = (value) => value.length < 10;
+  const email = useInput("");
+  const password = useInput("", maxLen);
+  const [error, setError] = useState("");
+
+  // const onChange = (event) => {
+  //   const {
+  //     target: { name, value },
+  //   } = event;
+  //   if (name === "email") setEmail(value);
+  //   else if (name === "password") setPassword(value);
+  // };
   const onSubmit = async (event) => {
     event.preventDefault();
     try {
-      await createUserWithEmailAndPassword(authService, email, password);
+      await createUserWithEmailAndPassword(
+        authService,
+        email.value,
+        password.value
+      );
     } catch (err) {
       setError(err.message);
     }
   };
   const Login = async () => {
     try {
-      await signInWithEmailAndPassword(authService, email, password);
+      await signInWithEmailAndPassword(
+        authService,
+        email.value,
+        password.value
+      );
     } catch (err) {
       setError(err.message);
     }
@@ -40,23 +68,25 @@ const AuthForm = () => {
           <div className="text-center h-8 max-w-md mx-auto border-black border-b">
             <input
               className="w-full h-full border-transparent text-center"
-              name="email"
-              type="text"
+              // name="email"
+              // type="text"
               placeholder="Email"
-              required
-              value={email}
-              onChange={onChange}
+              {...email}
+              // required
+              // value={email}
+              // onChange={onChange}
             />
           </div>
           <div className="text-center h-8 max-w-md mx-auto border-black border-b mt-2">
             <input
               className="w-full h-full border-transparent text-center"
-              name="password"
+              // name="password"
               type="password"
               placeholder="Password"
-              required
-              value={password}
-              onChange={onChange}
+              {...password}
+              // required
+              // value={password}
+              // onChange={onChange}
             />
           </div>
           <div
