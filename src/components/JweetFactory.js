@@ -103,12 +103,16 @@ const JweetFactoty = ({ userObj }) => {
           </div>
         </>
       )}
-      <div className="w-full py-1 my-2 rounded-2xl bg-blue-400  text-center">
-        <input
+      <div
+        className="w-full py-1 my-2 rounded-2xl bg-blue-400  text-center text-white font-semibold"
+        onClick={onSubmit}
+      >
+        Jweet
+        {/* <input
           className="text-white font-semibold"
           type="submit"
           value="Jweet"
-        />
+        /> */}
       </div>
     </form>
   );
